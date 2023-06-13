@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const cookieParser = require('cookie-parser');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import cookieParser from 'cookie-parser';
 
 // REQUIRE ROUTER
 const apiRouter = require("./routes/apiRouter");
