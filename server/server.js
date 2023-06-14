@@ -58,6 +58,7 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   socket.on('client-ready', () => {
+    console.log('hello111')
     socket.broadcast.emit('get-canvas-state');
   });
 
@@ -67,16 +68,17 @@ io.on('connection', (socket) => {
   });
 
   socket.on('draw-line', ({ prevPoint, currentPoint, color }) => {
+    console.log('drew-line')
     socket.broadcast.emit('draw-line', { prevPoint, currentPoint, color });
   });
 
   socket.on('clear', () => io.emit('clear'));
 });
-server.listen(3001, () => {
-  console.log('✔️ Server listening on port 3001');
+server.listen(8083, () => {
+  console.log('✔️ Server listening on port 8081');
 });
 
-// STARTING SERVER
+// STARTING SERVER  
 app.listen(PORT, function () {
   console.log(`Server is running on port ${PORT}`);
 });
