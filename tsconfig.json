@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist/",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
     "module": "es6",
