@@ -62,6 +62,11 @@ const config = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
+    fallback: {
+      util: require.resolve('util/'),
+      stream: require.resolve('stream-browserify'),
+      assert: require.resolve('assert/'),
+    },
   },
 };
 

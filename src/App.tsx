@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css'; //added line
-import Test from './ws'
+import Board from './Board'
+import Test from './ws.jsx'
 
 const App: React.FC = () => {
   return (
     <div>
-      <h1 className='text-3xl'>Hello, Redux Toolkit!</h1>
-      <Test />
+      <h1 className='text-3xl'>Welcome to DrawRTC</h1>
+      {/* <Board></Board> */}
+      <Test></Test>
+      {/* Add your components and logic here */}
     </div>
   );
 };

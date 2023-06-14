@@ -1,7 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import cookieParser from 'cookie-parser';
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const cookieParser = require('cookie-parser');
 
 // REQUIRE ROUTER
 const apiRouter = require("./routes/apiRouter");
@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 });
 //SERVE STATIC FILES
 app.use("/", express.static(path.join(__dirname, "../src")));
+
 
 //REROUTE API CALLS TO ROUTER
 app.use("/api", apiRouter);
