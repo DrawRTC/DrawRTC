@@ -11,6 +11,7 @@ type DrawLineProps = Draw & {
   
     let startPoint = prevPoint ?? currentPoint
     ctx.beginPath()
+    ctx.lineCap = 'round'
     ctx.lineWidth = lineWidth
     ctx.strokeStyle = lineColor
     ctx.moveTo(startPoint.x, startPoint.y)
