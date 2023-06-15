@@ -17,8 +17,6 @@ const Board: React.FC = () => {
   const [color, setColor] = useState<string>('#000');
   const { canvasRef, onMouseDown, clear } = useDraw(createLine);
 
-  const canvasContainerRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d');
 
@@ -59,28 +57,9 @@ const Board: React.FC = () => {
     drawLine({ prevPoint, currentPoint, ctx, color });
   }
 
-  useEffect(() => {
-    const container = canvasContainerRef.current;
-    const canvas = canvasRef.current;
-
-    const resizeCanvas = () => {
-      if (!container || !canvas) return;
-
-      const { width, height } = container.getBoundingClientRect();
-      canvas.width = width;
-      canvas.height = height;
-    };
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, [canvasRef]);
   return (
     <>
-      <div style={{ backgroundColor: `${color}` }} className="navbar bg-base-200 flex items-center justify-items-center">
+      <div style={{ backgroundColor: `${color}` }} className="navbar bg-base-200 flex items-center justify-items-center fixed top-0 left-0 right-0 z-50">
         <div className="flex-1">
           <a className="btn bg-black border-none normal-case tracking-wider text-4xl">DrawRTC</a>
         </div>
@@ -104,15 +83,7 @@ const Board: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className='w-screen h-screen bg-white flex justify-center items-center'>
-        <div
-          ref={canvasContainerRef}
-          style={{ overflow: 'auto' }}
-          className='border border-black rounded-md'
-        >
-          <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight} onMouseDown={onMouseDown} />
-        </div>
-      </div>
+      <canvas className='border border-none overflow-scroll bg-white' ref={canvasRef} width={5000} height={5000} onMouseDown={onMouseDown} />
     </>
   );
 };
