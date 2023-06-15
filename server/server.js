@@ -72,9 +72,6 @@ io.on('connection', (socket) => {
 
   socket.on('clear', () => io.emit('clear'));
 });
-server.listen(8083, () => {
-  console.log('✔️ Server listening on port 8081');
-});
 
 // STARTING SERVER  
 app.listen(PORT, function () {

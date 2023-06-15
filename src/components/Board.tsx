@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 import { drawLine } from '../app/drawLine';
 import SelectionBar from './SelectionBar'
 
-const socket = io('https://draw-rtc.vercel.app/');
+const socket = io('https://socket-server-two-phi.vercel.app/');
 
 type DrawLineProps = {
   prevPoint: Point | null;
