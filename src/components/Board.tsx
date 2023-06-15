@@ -40,7 +40,7 @@ const Board: React.FC = () => {
 
     socket.on('draw-line', ({ prevPoint, currentPoint, color }: DrawLineProps) => {
       if (!ctx) return console.log('no ctx here');
-      drawLine({ prevPoint, currentPoint, ctx, color });
+      drawLine({ prevPoint, currentPoint, ctx, color, brushSize });
     });
 
     socket.on('clear', clear);
@@ -55,12 +55,12 @@ const Board: React.FC = () => {
 
   function createLine({ prevPoint, currentPoint, ctx }: Draw) {
     socket.emit('draw-line', { prevPoint, currentPoint, color });
-    drawLine({ prevPoint, currentPoint, ctx, color });
+    drawLine({ prevPoint, currentPoint, ctx, color, brushSize });
   }
 
   return (
     <>
-      <SelectionBar color={color} setColor={setColor} socket={socket}/>
+      <SelectionBar color={color} setColor={setColor} socket={socket} setBrushSize={setBrushSize}/>
       <canvas className='border border-none overflow-scroll bg-white' ref={canvasRef} width={5000} height={5000} onMouseDown={onMouseDown} />
     </>
   );
