@@ -4,10 +4,8 @@ import Board from './components/Board'
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1 className='text-3xl'>Welcome to DrawRTC</h1>
+    <div className='overflow-scroll bg-white scrollbar-corner-slate-400 scrollbar-thumb-slate-200 scrollbar-track-slate-400 whitespace-nowrap'>
       <Board />
-      {/* Add your components and logic here */}
     </div>
   );
 };
