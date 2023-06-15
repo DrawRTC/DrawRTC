@@ -18,7 +18,7 @@ export const useDraw = (onDraw:({ctx, currentPoint, prevPoint} : Draw) => void) 
         ctx.clearRect(0,0,canvas.width, canvas.height)
     }
     useEffect(() => {
-        const handler = (e: MouseEvent) => {
+        const handler = (e: MouseEvent | TouchEvent) => {
             if (!mouseDown) return
             const currentPoint = computePointInCanvas(e)
             console.log(currentPoint)
@@ -30,14 +30,14 @@ export const useDraw = (onDraw:({ctx, currentPoint, prevPoint} : Draw) => void) 
             prevPoint.current = currentPoint
         }
 
-        const computePointInCanvas = (e: MouseEvent) => {
+        const computePointInCanvas = (e: any) => {
             const canvas = canvasRef.current
             if(!canvas) return
 
             const rect = canvas.getBoundingClientRect()
 
-            const x = e.clientX - rect.left
-            const y = e.clientY - rect.top
+            const x = e.clientX - rect.left || e.touches[0].clientX
+            const y = e.clientY - rect.top || e.touches[0].clientX
 
             return {x,y}
         }
@@ -51,9 +51,16 @@ export const useDraw = (onDraw:({ctx, currentPoint, prevPoint} : Draw) => void) 
         canvasRef.current?.addEventListener('mousemove', handler)
         window.addEventListener('mouseup', mouseUpHandler)
 
+        canvasRef.current?.addEventListener('touchmove', handler)
+        window.addEventListener('touchstart', mouseUpHandler)
+        
+
         return () => {
             canvasRef.current?.removeEventListener('mousemove', handler)
             window.removeEventListener('mouseup', mouseUpHandler)
+
+            canvasRef.current?.addEventListener('touchmove', handler)
+            window.addEventListener('touchstart', mouseUpHandler)
         }
     }, [onDraw])
 

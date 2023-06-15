@@ -5,7 +5,7 @@ import { ChromePicker, SketchPicker, CompactPicker } from 'react-color';
 import { io } from 'socket.io-client';
 import { drawLine } from '../app/drawLine';
 
-const socket = io('http://localhost:8083');
+const socket = io('https://draw-rtc.vercel.app/');
 
 type DrawLineProps = {
   prevPoint: Point | null;
