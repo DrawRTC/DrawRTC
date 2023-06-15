@@ -58,7 +58,6 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   socket.on('client-ready', () => {
-    console.log('hello111')
     socket.broadcast.emit('get-canvas-state');
   });
 
@@ -68,7 +67,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('draw-line', ({ prevPoint, currentPoint, color }) => {
-    console.log('drew-line')
     socket.broadcast.emit('draw-line', { prevPoint, currentPoint, color });
   });
 

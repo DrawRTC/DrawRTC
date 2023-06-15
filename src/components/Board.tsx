@@ -62,8 +62,8 @@ const Board: React.FC = () => {
       <div className='flex flex-col gap-10 pr-10'>
         <ChromePicker color={color} onChange={(e) => setColor(e.hex)} />
         <button
-          type='button'
-          className='p-2 rounded-md border border-black'
+          // type='button'
+          className='btn btn-secondary p-2 rounded-md border border-black'
           onClick={() => socket.emit('clear')}>
           Clear canvas
         </button>
